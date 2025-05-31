@@ -1,0 +1,34 @@
+{
+  "name": "@fistware/developer-tools",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "lint": "eslint ./src",
+    "check-updates": "npx ncu", 
+    "update-dependencies": "npx ncu -u && npm install"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Ioannis Tsirovasilis",
+    "email": "ioannis.tsirovasilis@fistware.com"
+  },
+  "license": "UNLICENSED",
+  "files": [
+    "dist"
+  ],
+  "description": "Developer tools for Fistware projects",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@fistware/lint-ts": "1.0.0",
+    "@types/node": "22.15.21",
+    "npm-check-updates": "18.0.1",
+    "typescript": "5.8.3"
+  }
+}
