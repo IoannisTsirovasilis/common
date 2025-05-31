@@ -9,6 +9,8 @@
     "packages/*"
   ],
   "scripts": {
+    "build": "npm run build --workspaces",
+    "lint": "npm run lint --workspaces",
     "check-updates": "npx ncu --deep", 
     "update-dependencies": "npx ncu -u --deep",
     "diff:packages": "node node_modules/@fistware/developer-tools/dist/diff-packages.js"

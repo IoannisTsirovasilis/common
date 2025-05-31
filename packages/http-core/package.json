@@ -1,5 +1,5 @@
 {
-  "name": "@fistware/developer-tools",
+  "name": "@fistware/http-core",
   "version": "0.1.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -20,7 +20,7 @@
   "files": [
     "dist"
   ],
-  "description": "Developer tools for Fistware projects",
+  "description": "HTTP core functionality for Fistware projects",
   "dependencies": {
   },
   "devDependencies": {

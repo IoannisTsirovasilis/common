@@ -1,0 +1,91 @@
+#!/usr/bin/env node
+
+import { execSync, spawnSync } from "child_process";
+import { readdirSync, statSync, readFileSync } from "fs";
+import { join } from "path";
+
+function run(cmd: string): string {
+  return execSync(cmd, { stdio: "pipe" }).toString().trim();
+}
+
+const pkgsDir = "packages";
+
+// Read all sub‐directories in "packages/"
+let dirNames: string[];
+try {
+  dirNames = readdirSync(pkgsDir).filter((name) =>
+    statSync(join(pkgsDir, name)).isDirectory(),
+  );
+} catch (err) {
+  console.error(
+    "❌  Could not read packages directory:",
+    err instanceof Error ? err.message : String(err),
+  );
+  process.exit(1);
+}
+
+dirNames.forEach((dirName) => {
+  const pkgPath = join(pkgsDir, dirName);
+  let pkgName: string;
+
+  try {
+    pkgName = readPackageJsonName(pkgPath);
+  } catch (err) {
+    console.error(
+      `❌  Skipping “${dirName}” (could not read/parse package.json):`,
+      err instanceof Error ? err.message : String(err),
+    );
+    return;
+  }
+
+  console.log(`\n=== ${pkgName} (dir: ${dirName}) ===`);
+
+  // Build the tag‐matching pattern from package.json “name”
+  // e.g. if pkgName === "@fistware/test", match "@fistware/test@v*"
+  const matchPattern = `${pkgName}@v*`;
+
+  let baseRef: string;
+  try {
+    baseRef = getLastTag(matchPattern);
+  } catch {
+    console.log(
+      "ℹ️  No published tag found for this package; showing all changes since the first commit.",
+    );
+    baseRef = run("git rev-list --max-parents=0 HEAD");
+  }
+
+  showChanges(baseRef, dirName);
+});
+
+function getLastTag(matchPattern: string) {
+  const baseRefBuffer = spawnSync("git", [
+    "describe",
+    "--tags",
+    "--abbrev=0",
+    `--match=${matchPattern}`,
+  ]);
+
+  return String(baseRefBuffer.stdout).trim();
+}
+
+function readPackageJsonName(pkgPath: string) {
+  const raw = readFileSync(join(pkgPath, "package.json"), "utf8");
+  const pkgJson = JSON.parse(raw);
+  if (!pkgJson.name || typeof pkgJson.name !== "string") {
+    throw new Error("`name` field is missing or not a string");
+  }
+
+  return pkgJson.name;
+}
+
+function showChanges(baseRef: string, dirName: string) {
+  try {
+    const diff = run(
+      `git diff --name-only ${baseRef} HEAD -- "${join(pkgsDir, dirName)}"`,
+    );
+    console.log(diff || "(no changes)");
+  } catch {
+    // In case something goes wrong with git diff, print “no changes”
+    console.log("(no changes)");
+  }
+}
