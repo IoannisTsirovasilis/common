@@ -1,0 +1,25 @@
+{
+  "name": "@fistware/common",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "check-updates": "npx ncu --deep", 
+    "update-dependencies": "npx ncu -u --deep"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Ioannis Tsirovasilis",
+    "email": "ioannis.tsirovasilis@fistware.com"
+  },
+  "license": "UNLICENSED",
+  "description": "Common packages for Fistware projects",
+  "devDependencies": {
+    "npm-check-updates": "18.0.1"
+  }
+}
