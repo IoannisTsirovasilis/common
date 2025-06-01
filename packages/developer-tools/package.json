@@ -24,7 +24,7 @@
   "dependencies": {
   },
   "devDependencies": {
-    "@fistware/lint-ts": "1.0.0",
+    "@fistware/lint-ts": "1.0.1",
     "@types/node": "22.15.29",
     "typescript": "5.8.3"
   }
