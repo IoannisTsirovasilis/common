@@ -44,15 +44,7 @@ dirNames.forEach((dirName) => {
   // e.g. if pkgName === "@fistware/test", match "@fistware/test@v*"
   const matchPattern = `${pkgName}@v*`;
 
-  let baseRef: string;
-  try {
-    baseRef = getLastTag(matchPattern);
-  } catch {
-    console.log(
-      "ℹ️  No published tag found for this package; showing all changes since the first commit.",
-    );
-    baseRef = run("git rev-list --max-parents=0 HEAD");
-  }
+  const baseRef = getLastTag(matchPattern);
 
   showChanges(baseRef, dirName);
 });
