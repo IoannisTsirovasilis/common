@@ -4,31 +4,16 @@ import { execSync, spawnSync } from "child_process";
 import { readdirSync, statSync, readFileSync } from "fs";
 import { join } from "path";
 
-function run(cmd: string): string {
-  return execSync(cmd, { stdio: "pipe" }).toString().trim();
-}
-
 const pkgsDir = "packages";
 
-// 1) Read all sub‐directories in "packages/"
-let dirNames: string[];
-try {
-  dirNames = readdirSync(pkgsDir).filter((name) =>
-    statSync(join(pkgsDir, name)).isDirectory(),
-  );
-} catch (err) {
-  console.error(
-    "❌  Could not read packages directory:",
-    err instanceof Error ? err.message : String(err),
-  );
-  process.exit(1);
-}
+const dirNames = readAllSubDirectories(pkgsDir);
 
-dirNames.forEach((dirName) => {
+dirNames.forEach(showChangesForPackage);
+
+function showChangesForPackage(dirName: string) {
   const pkgPath = join(pkgsDir, dirName);
   let pkgName: string;
 
-  // 2) Attempt to read and parse package.json
   try {
     pkgName = readPackageJsonName(pkgPath);
   } catch (err) {
@@ -36,29 +21,38 @@ dirNames.forEach((dirName) => {
       `❌  Skipping “${dirName}” (could not read/parse package.json):`,
       err instanceof Error ? err.message : String(err),
     );
-    return; // skip this directory
+    return;
   }
 
   console.log(`\n=== ${pkgName} (dir: ${dirName}) ===`);
 
-  // Build the tag‐matching pattern from package.json “name”
-  // e.g. if pkgName === "@fistware/test", match "@fistware/test@v*"
-  const matchPattern = `${pkgName}@v*`;
+  const baseRef = getLastTag(pkgName);
 
-  let baseRef: string;
+  showChanges(baseRef, dirName, pkgsDir);
+}
+
+function run(cmd: string): string {
+  return execSync(cmd, { stdio: "pipe" }).toString().trim();
+}
+
+function readAllSubDirectories(packageDir: string) {
   try {
-    baseRef = getLastTag(matchPattern);
-  } catch {
-    console.log(
-      "ℹ️  No published tag found for this package; showing all changes since the first commit.",
+    const directoryNames = readdirSync(packageDir).filter((name) =>
+      statSync(join(packageDir, name)).isDirectory(),
     );
-    baseRef = run("git rev-list --max-parents=0 HEAD");
+
+    return directoryNames;
+  } catch (err) {
+    console.error(
+      "❌  Could not read packages directory:",
+      err instanceof Error ? err.message : String(err),
+    );
+    process.exit(1);
   }
+}
 
-  showChanges(baseRef, dirName);
-});
-
-function getLastTag(matchPattern: string) {
+function getLastTag(packageName: string) {
+  const matchPattern = `${packageName}@v*`;
   const baseRefBuffer = spawnSync("git", [
     "describe",
     "--tags",
@@ -79,14 +73,13 @@ function readPackageJsonName(pkgPath: string) {
   return pkgJson.name;
 }
 
-function showChanges(baseRef: string, dirName: string) {
+function showChanges(baseRef: string, dirName: string, packagesDir: string) {
   try {
     const diff = run(
-      `git diff --name-only ${baseRef} HEAD -- "${join(pkgsDir, dirName)}"`,
+      `git diff --name-only ${baseRef} HEAD -- "${join(packagesDir, dirName)}"`,
     );
     console.log(diff || "(no changes)");
   } catch {
-    // In case something goes wrong with git diff, print “no changes”
     console.log("(no changes)");
   }
 }
