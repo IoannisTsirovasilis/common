@@ -1,0 +1,29 @@
+{
+  "name": "@fistware/http-client",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "lint": "eslint ./src"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Ioannis Tsirovasilis",
+    "email": "ioannis.tsirovasilis@fistware.com"
+  },
+  "license": "ISC",
+  "description": "An HTTP client library for Fistware applications.",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@fistware/lint-ts": "1.0.0",
+    "@types/node": "22.15.21",
+    "typescript": "5.8.3"
+  },
+  "dependencies": {
+    "pino": "9.7.0"
+  }
+}
