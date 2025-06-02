@@ -27,4 +27,4 @@ const httpClient = HttpClient({
 
 ## License
 
-ISC
+UNLICENSED

@@ -1,6 +1,8 @@
-import { HttpRequestMethod } from "../enums/HttpRequestMethod";
-import { HttpResponse } from "../interfaces/HttpResponse";
-import { ResponseData } from "../interfaces/ResponseData";
+import {
+  HttpRequestMethod,
+  HttpResponse,
+  ResponseData,
+} from "@fistware/http-core";
 
 export async function buildResponse<M extends ResponseData>(
   response: Response,

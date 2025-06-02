@@ -1,8 +1,10 @@
-import { HttpRequestMethod } from "./enums/HttpRequestMethod";
-import { HttpRequest } from "./interfaces/HttpRequest";
-import { HttpPayload } from "./interfaces/HttpPayload";
-import { HttpResponse } from "./interfaces/HttpResponse";
-import { ResponseData } from "./interfaces/ResponseData";
+import {
+  HttpPayload,
+  HttpRequest,
+  HttpRequestMethod,
+  HttpResponse,
+  ResponseData,
+} from "@fistware/http-core";
 import { CreateLogger } from "./logger";
 import {
   buildOptions,
