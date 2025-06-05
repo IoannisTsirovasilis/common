@@ -1,0 +1,30 @@
+# Logger
+
+A simple logging utility for F projects.
+
+## Features
+
+- Multiple log levels: `debug`, `info`, `warn`, `error`
+- Easy integration with existing projects
+
+## Installation
+
+```bash
+npm install @fistware/logger
+```
+
+## Usage
+
+```js
+import { Logger } from '@fistware/logger';
+
+const logger = new Logger({ level: 'info' });
+
+logger.info('Application started');
+logger.warn('Low disk space');
+logger.error('Unhandled exception');
+```
+
+## License
+
+UNLICENSED
