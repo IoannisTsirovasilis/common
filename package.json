@@ -12,7 +12,7 @@
     "build": "npm run build --workspaces",
     "lint": "npm run lint --workspaces",
     "check-updates": "npx ncu --deep", 
-    "update-dependencies": "npx ncu -u --deep",
+    "update-dependencies": "npx ncu -u --deep && npm install",
     "diff:packages": "node node_modules/@fistware/developer-tools/dist/diff-packages.js"
   },
   "keywords": [],

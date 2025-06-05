@@ -1,6 +1,6 @@
 {
   "name": "@fistware/http-core",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "engines": {
@@ -24,8 +24,8 @@
   "dependencies": {
   },
   "devDependencies": {
-    "@fistware/lint-ts": "1.0.1",
-    "@types/node": "22.15.29",
+    "@fistware/lint-ts": "1.0.2",
+    "@types/node": "22.15.30",
     "typescript": "5.8.3"
   }
 }

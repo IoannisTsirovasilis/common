@@ -17,6 +17,11 @@ This repository serves as the monorepo for a collection shared utilities, helper
 
 For more details, see the documentation within each package directory.
 
+## Dependency Graph
+
+- `http-client` -> `http-core`, `logger`
+- `fastify-core` -> `http-core`, `logger`
+
 ## License
 
 UNLICENSED
