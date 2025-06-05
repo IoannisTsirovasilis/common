@@ -1,6 +1,6 @@
 {
   "name": "@fistware/http-client",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "engines": {
@@ -27,7 +27,7 @@
     "typescript": "5.8.3"
   },
   "dependencies": {
-    "pino": "9.7.0",
-    "@fistware/http-core": "1.0.0"
+    "@fistware/http-core": "1.0.0",
+    "@fistware/logger": "1.0.0"
   }
 }

@@ -8,6 +8,7 @@ An HTTP client library for Fistware applications.
 - Customizable headers and query parameters
 - Handles JSON request and response
 - Easy to use and extend
+- Integrated logging for requests and responses (you can use the @fistware/logger)
 
 ## Installation
 

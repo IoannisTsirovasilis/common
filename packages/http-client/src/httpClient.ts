@@ -5,18 +5,18 @@ import {
   HttpResponse,
   ResponseData,
 } from "@fistware/http-core";
-import { CreateLogger } from "./logger";
+
 import {
   buildOptions,
   buildResponse,
   maskSensitiveData,
 } from "./utils/httpUtils";
-import { Logger } from "pino";
+import { Logger, LoggerType } from "@fistware/logger";
 
 export function HttpClient(options: HttpClientOptions) {
   const { baseUrl, logging, loggingLevel } = options;
 
-  const logger = CreateLogger({
+  const logger = Logger({
     enabled: logging,
     level: loggingLevel,
   });
@@ -91,7 +91,7 @@ interface ExecuteOptions<P extends HttpPayload> {
   url: string;
   request: HttpRequest<P>;
   method: HttpRequestMethod;
-  logger: Logger<never, boolean>;
+  logger: LoggerType;
 }
 
 async function execute<P extends HttpPayload, M extends ResponseData>(
