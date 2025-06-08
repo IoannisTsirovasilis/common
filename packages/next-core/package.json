@@ -1,6 +1,6 @@
 {
   "name": "@fistware/next-core",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "engines": {
@@ -24,12 +24,15 @@
   "devDependencies": {
     "@fistware/lint-next": "1.0.1",
     "@types/node": "22.15.30",
-    "typescript": "5.8.3"
-    
+    "typescript": "5.8.3",
+    "@types/react": "19.1.6",
+    "@types/react-dom": "19.1.6"
   },
   "dependencies": {
     "@fistware/http-core": "1.0.1",
     "@fistware/logger": "1.0.1",
-    "next": "15.3.3"
+    "next": "15.3.3",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
   }
 }
