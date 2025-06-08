@@ -76,3 +76,7 @@ function buildGeneralErrorResponse(error: Error) {
 
   return res;
 }
+
+export function defaultTransformResponse(data: any) {
+  return data as ResponseData | ResponseData[];
+}

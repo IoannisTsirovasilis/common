@@ -12,11 +12,17 @@ export function validateSchema(schema: Joi.Schema, value: unknown) {
 
 export async function validateRequest<P extends HttpPayload>(
   req: NextRequest,
-  schema: Joi.Schema,
+  schema?: Joi.Schema,
 ) {
+  if (!schema) {
+    return {} as P;
+  }
+
   const request = await req.json();
 
-  const { error, value } = validateSchema(schema, request);
+  const query = Object.fromEntries(req.nextUrl.searchParams.entries());
+
+  const { error, value } = validateSchema(schema, { ...request, ...query });
 
   if (error) {
     const message = error.details.map((detail) => detail.message).join(", ");
@@ -27,9 +33,17 @@ export async function validateRequest<P extends HttpPayload>(
 }
 
 export function validateParams<P extends HttpPayload>(
-  params: any,
-  schema: Joi.Schema,
+  params?: any,
+  schema?: Joi.Schema,
 ) {
+  if (!params) {
+    return {} as P;
+  }
+
+  if (!schema) {
+    return params as P;
+  }
+
   const { error, value } = validateSchema(schema, params);
 
   if (error) {

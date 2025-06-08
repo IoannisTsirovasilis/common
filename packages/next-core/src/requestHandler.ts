@@ -5,6 +5,7 @@ import { logRequest, logResponse } from "./lib/logger";
 import {
   buildResponse,
   buildServiceRequest,
+  defaultTransformResponse,
   handleError,
 } from "./lib/utils/utils";
 import { NextRequest, NextResponse } from "next/server";
@@ -15,22 +16,24 @@ export function handleApiRequest<
   R extends HttpRequest<P>,
   M extends ResponseData,
 >(options: HandleApiRequestOptions<P, R, M>) {
-  const { action, schema, transformResponse, handleAuth, paramsSchema } =
-    options;
-  return async (req: NextRequest, { params }: { params: any }) => {
+  const {
+    action,
+    schema,
+    transformResponse = defaultTransformResponse,
+    handleAuth,
+    paramsSchema,
+  } = options;
+  return async (req: NextRequest, props: { params: any }) => {
     try {
-      logRequest(req, params);
+      logRequest(req, props?.params);
 
       if (handleAuth) {
         await handleAuth(req);
       }
 
-      const fields = schema ? await validateRequest<P>(req, schema) : ({} as P);
+      const fields = await validateRequest<P>(req, schema);
 
-      let validatedParams = { ...params };
-      if (paramsSchema) {
-        validatedParams = validateParams<P>(params, paramsSchema);
-      }
+      const validatedParams = validateParams<P>(props?.params, paramsSchema);
 
       const requestFields = { ...fields, ...validatedParams };
 
