@@ -10,6 +10,7 @@ import {
 } from "./lib/utils/utils";
 import { NextRequest, NextResponse } from "next/server";
 import { HEADERS } from "./lib/constants/constants";
+import { NextRequestProps } from "./lib/interfaces/NextRequestProps";
 
 export function handleApiRequest<
   P extends HttpPayload,
@@ -23,9 +24,9 @@ export function handleApiRequest<
     handleAuth,
     paramsSchema,
   } = options;
-  return async (req: NextRequest, props: { params: any }) => {
+  return async (req: NextRequest, props: NextRequestProps) => {
     try {
-      logRequest(req, props?.params);
+      logRequest(req, props);
 
       if (handleAuth) {
         await handleAuth(req);
@@ -33,7 +34,7 @@ export function handleApiRequest<
 
       const fields = await validateRequest<P>(req, schema);
 
-      const validatedParams = validateParams<P>(props?.params, paramsSchema);
+      const validatedParams = validateParams<P>(props, paramsSchema);
 
       const requestFields = { ...fields, ...validatedParams };
 

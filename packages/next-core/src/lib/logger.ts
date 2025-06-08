@@ -1,16 +1,14 @@
 import { HttpResponse, ResponseData } from "@fistware/http-core";
 import { Logger } from "@fistware/logger";
 import { NextRequest } from "next/server";
+import { NextRequestProps } from "./interfaces/NextRequestProps";
 
 export const logger = Logger({
   level: String(process.env.LOG_LEVEL || "info"),
   enabled: process.env.LOG_ENABLED === "true",
 });
 
-export async function logRequest(
-  req: NextRequest,
-  { params }: { params: any },
-) {
+export async function logRequest(req: NextRequest, props: NextRequestProps) {
   const headers = Object.fromEntries(req.headers.entries());
   const { searchParams } = req.nextUrl;
 
@@ -27,7 +25,7 @@ export async function logRequest(
     request: {
       headers,
       body,
-      params,
+      params: props?.params,
       query,
     },
   });

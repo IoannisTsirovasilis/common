@@ -1,6 +1,7 @@
 import { BadRequestError, HttpPayload } from "@fistware/http-core";
 import Joi from "joi";
 import { NextRequest } from "next/server";
+import { NextRequestProps } from "../interfaces/NextRequestProps";
 
 export function validateSchema(schema: Joi.Schema, value: unknown) {
   const result = schema.validate(value, {
@@ -33,18 +34,18 @@ export async function validateRequest<P extends HttpPayload>(
 }
 
 export function validateParams<P extends HttpPayload>(
-  params?: any,
+  props?: NextRequestProps,
   schema?: Joi.Schema,
 ) {
-  if (!params) {
+  if (!props || !props.params) {
     return {} as P;
   }
 
   if (!schema) {
-    return params as P;
+    return props.params as P;
   }
 
-  const { error, value } = validateSchema(schema, params);
+  const { error, value } = validateSchema(schema, props.params);
 
   if (error) {
     const message = error.details.map((detail) => detail.message).join(", ");
