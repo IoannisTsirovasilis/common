@@ -1,7 +1,7 @@
 import { BadRequestError, HttpPayload } from "@fistware/http-core";
 import Joi from "joi";
 import { NextRequest } from "next/server";
-import { NextRequestProps } from "../interfaces/NextRequestProps";
+import { NextRequestParts } from "../interfaces/NextRequestParts";
 
 export function validateSchema(schema: Joi.Schema, value: unknown) {
   const result = schema.validate(value, {
@@ -11,41 +11,21 @@ export function validateSchema(schema: Joi.Schema, value: unknown) {
   return result;
 }
 
-export async function validateRequest<P extends HttpPayload>(
+export function validateRequest<P extends HttpPayload>(
   req: NextRequest,
+  parts: NextRequestParts,
   schema?: Joi.Schema,
 ) {
   if (!schema) {
     return {} as P;
   }
+  const { body, query, params } = parts;
 
-  const request = await req.json();
-
-  const query = Object.fromEntries(req.nextUrl.searchParams.entries());
-
-  const { error, value } = validateSchema(schema, { ...request, ...query });
-
-  if (error) {
-    const message = error.details.map((detail) => detail.message).join(", ");
-    throw new BadRequestError(message);
-  }
-
-  return value as P;
-}
-
-export function validateParams<P extends HttpPayload>(
-  props?: NextRequestProps,
-  schema?: Joi.Schema,
-) {
-  if (!props || !props.params) {
-    return {} as P;
-  }
-
-  if (!schema) {
-    return props.params as P;
-  }
-
-  const { error, value } = validateSchema(schema, props.params);
+  const { error, value } = validateSchema(schema, {
+    ...body,
+    ...query,
+    ...params,
+  });
 
   if (error) {
     const message = error.details.map((detail) => detail.message).join(", ");

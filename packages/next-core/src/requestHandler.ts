@@ -1,11 +1,12 @@
 import { HttpPayload, HttpRequest, ResponseData } from "@fistware/http-core";
-import { validateParams, validateRequest } from "./lib/validation/validator";
+import { validateRequest } from "./lib/validation/validator";
 import { HandleApiRequestOptions } from "./lib/interfaces/HandleApiRequestOptions";
 import { logRequest, logResponse } from "./lib/logger";
 import {
   buildResponse,
   buildServiceRequest,
   defaultTransformResponse,
+  extractRequestParts,
   handleError,
 } from "./lib/utils/utils";
 import { NextRequest, NextResponse } from "next/server";
@@ -22,29 +23,25 @@ export function handleApiRequest<
     schema,
     transformResponse = defaultTransformResponse,
     handleAuth,
-    paramsSchema,
   } = options;
   return async (req: NextRequest, props: NextRequestProps) => {
     try {
-      logRequest(req, props);
+      const requestParts = await extractRequestParts(req, props);
+      logRequest(req, requestParts);
 
       if (handleAuth) {
         await handleAuth(req);
       }
 
-      const fields = await validateRequest<P>(req, schema);
+      const fields = await validateRequest<P>(req, requestParts, schema);
 
-      const validatedParams = validateParams<P>(props, paramsSchema);
-
-      const requestFields = { ...fields, ...validatedParams };
-
-      const serviceRequest = buildServiceRequest<P, R>(req, requestFields as P);
+      const serviceRequest = buildServiceRequest<P, R>(req, fields);
 
       const data = await action(serviceRequest);
 
       const response = buildResponse(data, transformResponse);
 
-      logResponse(data, req);
+      logResponse(response, req);
 
       return NextResponse.json(response, {
         headers: HEADERS,

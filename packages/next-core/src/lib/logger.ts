@@ -1,31 +1,23 @@
 import { HttpResponse, ResponseData } from "@fistware/http-core";
 import { Logger } from "@fistware/logger";
 import { NextRequest } from "next/server";
-import { NextRequestProps } from "./interfaces/NextRequestProps";
+import { NextRequestParts } from "./interfaces/NextRequestParts";
 
 export const logger = Logger({
   level: String(process.env.LOG_LEVEL || "info"),
   enabled: process.env.LOG_ENABLED === "true",
 });
 
-export async function logRequest(req: NextRequest, props: NextRequestProps) {
-  const headers = Object.fromEntries(req.headers.entries());
-  const { searchParams } = req.nextUrl;
-
-  const body = await req.json();
-
-  const query: Record<string, string> = {};
-  for (const [key, value] of searchParams.entries()) {
-    query[key] = value;
-  }
+export function logRequest(req: NextRequest, parts: NextRequestParts) {
+  const { headers, body, query, params } = parts;
 
   logger.info({
     method: req.method,
-    url: req.url,
+    url: req.nextUrl,
     request: {
       headers,
       body,
-      params: props?.params,
+      params,
       query,
     },
   });

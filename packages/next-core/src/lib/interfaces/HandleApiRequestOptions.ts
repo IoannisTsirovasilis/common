@@ -9,7 +9,6 @@ export interface HandleApiRequestOptions<
 > {
   action: (fields: R) => Promise<any>;
   schema?: Joi.Schema;
-  paramsSchema?: Joi.Schema;
   transformResponse?: (data: any) => M | M[];
   handleAuth?: (req: NextRequest) => Promise<void>;
 }
