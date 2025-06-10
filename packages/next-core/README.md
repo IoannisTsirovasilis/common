@@ -126,56 +126,36 @@ The response sent to the client will be in the following format:
 The `HandleApiRequestOptions` type defines the configuration object accepted by `handleApiRequest`. It allows you to customize request validation, authentication, response transformation, and the main action handler.
 
 ```ts
-import Joi from "joi";
-import { HttpRequest } from "@fistware/next-core";
-
-type HandleApiRequestOptions<P = any, M = any> = {
-  /**
-   * The main handler function that processes the request payload.
-   */
-  action: (fields: P, req: HttpRequest<P>) => Promise<M>;
-
-  /**
-   * Joi schema for validating the request payload (optional).
-   */
+/**
+ * Options for handling an API request in a Next.js environment.
+ *
+ * @typeParam P - The type of the HTTP payload.
+ * @typeParam R - The type of the HTTP request, extending `HttpRequest<P>`.
+ * @typeParam M - The type of the response data.
+ *
+ * @property action - An asynchronous function that processes the request fields and returns a result.
+ * @property schema - (Optional) A Joi schema used to validate the request payload.
+ * @property transformResponse - (Optional) A function to transform the response data before sending it to the client.
+ * @property handleAuth - (Optional) An asynchronous function to handle authentication logic using the incoming Next.js request.
+ */
+export interface HandleApiRequestOptions<
+  P extends HttpPayload,
+  R extends HttpRequest<P>,
+  M extends ResponseData,
+> {
+  action: (fields: R) => Promise<any>;
   schema?: Joi.Schema;
-
-  /**
-   * Joi schema for validating route parameters (optional).
-   */
-  paramsSchema?: Joi.Schema;
-
-  /**
-   * Function to transform the result of the action into the desired response format (optional).
-   */
-  transformResponse?: (data: M) => any;
-
-  /**
-   * Optional authentication handler that processes the request before the main action.
-   */
-  handleAuth?: (req: HttpRequest<P>) => Promise<void>;
-};
+  transformResponse?: (data: any) => M | M[];
+  handleAuth?: (req: NextRequest) => Promise<void>;
+}
 ```
 
 **Options:**
 
 - `action`: Main async function to handle the request.
 - `schema`: Joi schema for validating the request body (optional).
-- `paramsSchema`: Joi schema for validating route parameters (optional).
 - `transformResponse`: Function to shape the API response (optional).
 - `handleAuth`: Async function for authentication logic (optional).
-
-## Default CORS Headers
-
-The package exports a constant `HEADERS` for setting default CORS headers:
-
-```ts
-export const HEADERS = Object.freeze({
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type, Authorization",
-});
-```
 
 ## Logger Utility
 
@@ -200,6 +180,20 @@ This helps manage logging behavior across different environments.
 ## Related Packages
 
 - @fistware/http-core – Core utilities for building HTTP APIs with a consistent response structure.
+
+## Development
+
+### Build
+```bash
+npm run build
+```
+
+
+### Lint
+```bash
+npm run lint
+```
+
 
 ## License
 

@@ -1,9 +1,7 @@
 export * from "next";
-export * from "./requestHandler";
+export { handleApiRequest } from "./requestHandler";
 export * from "@fistware/http-core";
-export * from "./lib/logger";
-export * from "./lib/interfaces/HandleApiRequestOptions";
-export * from "./lib/constants/constants";
-export * from "./lib/utils/utils";
-export * from "./lib/interfaces/NextRequestParts";
+export { logger } from "./lib/logger";
+export { HandleApiRequestOptions } from "./lib/interfaces/HandleApiRequestOptions";
+export { NextRequestParts } from "./lib/interfaces/NextRequestParts";
 export { extractRequestParts } from "./lib/utils/utils";
