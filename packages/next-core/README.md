@@ -188,12 +188,10 @@ This helps manage logging behavior across different environments.
 npm run build
 ```
 
-
 ### Lint
 ```bash
 npm run lint
 ```
-
 
 ## License
 

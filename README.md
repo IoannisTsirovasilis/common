@@ -22,6 +22,33 @@ For more details, see the documentation within each package directory.
 - `http-client` -> `http-core`, `logger`
 - `fastify-core` -> `http-core`, `logger`
 
+## Development
+
+### Build All Pacakges
+```bash
+npm run build
+```
+
+### Lint All Pacakges
+```bash
+npm run lint
+```
+
+### Check Updates For All Pacakges
+```bash
+npm run check-updates
+```
+
+### Update Depenencies For All Pacakges
+```bash
+npm run update-dependencies
+```
+
+### Check Code Changes Since Last Publish For All Pacakges
+```bash
+npm run diff:packages
+```
+
 ## License
 
 UNLICENSED
