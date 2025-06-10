@@ -30,7 +30,7 @@ export function handleApiRequest<
       logRequest(req, requestParts);
 
       if (handleAuth) {
-        await handleAuth(req);
+        await handleAuth(requestParts.headers);
       }
 
       const fields = await validateRequest<P>(req, requestParts, schema);

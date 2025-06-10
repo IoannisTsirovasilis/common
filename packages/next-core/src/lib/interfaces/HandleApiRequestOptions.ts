@@ -1,6 +1,5 @@
 import { HttpPayload, HttpRequest, ResponseData } from "@fistware/http-core";
 import Joi from "joi";
-import { NextRequest } from "next/server";
 
 /**
  * Options for handling an API request in a Next.js environment.
@@ -22,5 +21,5 @@ export interface HandleApiRequestOptions<
   action: (fields: R) => Promise<any>;
   schema?: Joi.Schema;
   transformResponse?: (data: any) => M | M[];
-  handleAuth?: (req: NextRequest) => Promise<void>;
+  handleAuth?: (headers: Record<string, string>) => Promise<void>;
 }
