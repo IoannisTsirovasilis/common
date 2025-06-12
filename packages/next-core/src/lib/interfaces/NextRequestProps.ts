@@ -1,3 +1,3 @@
 export interface NextRequestProps {
-  params?: Promise<object>;
+  params: Promise<any>;
 }
