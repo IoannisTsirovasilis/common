@@ -35,6 +35,19 @@ npm install @fistware/http-core
 - `UnauthorizedError`: Class that represents unauthorized error
 - `EntityNotFoundError`: Class that represents not found error
 
+## Development
+
+### Build
+```bash
+npm run build
+```
+
+### Lint
+```bash
+npm run lint
+```
+
+
 ## License
 
 UNLICENSED

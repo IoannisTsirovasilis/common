@@ -25,6 +25,19 @@ logger.warn('Low disk space');
 logger.error('Unhandled exception');
 ```
 
+## Development
+
+### Build
+```bash
+npm run build
+```
+
+### Lint
+```bash
+npm run lint
+```
+
+
 ## License
 
 UNLICENSED

@@ -66,26 +66,12 @@ Defines the options for configuring `handleApiRequest`:
 |-------------------|-----------------------------------------------------------|-----------------------------------------------------------------------------------------------|
 | `action`          | `(fields: P) => Promise<any>`                             | The main handler function that processes the request payload and returns a promise.            |
 | `schema`          | `Joi.Schema` _(optional)_                                 | Joi schema for validating the request payload.                                                |
-| `transformResponse` | `(data: any) => M \| M[]`                               | Function to transform the result of the action into the desired response format.               |
-| `handleAuth`      | `(req: FastifyRequest) => Promise<void>` _(optional)_     | Optional authentication handler that processes the request before the main action.             |
+| `transformResponse` | `(data: any) => M \| M[]`  _(optional)_                 | Function to transform the result of the action into the desired response format.               |
+| `handleAuth`      | `(headers: Record<string, string>) => Promise<void>` _(optional)_     | Optional authentication handler that processes the request before the main action.             |
 
 Where:
 - `P` extends `HttpPayload` (the request payload type)
 - `M` extends `ResponseData` (the response data type)
-
-## Default CORS Headers
-
-The package exports a constant `HEADERS` for setting default CORS headers:
-
-```ts
-export const HEADERS = Object.freeze({
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type, Authorization",
-});
-```
-
-You can use `HEADERS` to quickly configure CORS in your Fastify routes or plugins.
 
 ## Response Utilities
 
@@ -144,6 +130,18 @@ This helps manage logging behavior across different environments.
 ## Documentation
 
 See the [Fastify documentation](https://fastify.dev/docs/latest/) for more details.
+
+## Development
+
+### Build
+```bash
+npm run build
+```
+
+### Lint
+```bash
+npm run lint
+```
 
 ## License
 

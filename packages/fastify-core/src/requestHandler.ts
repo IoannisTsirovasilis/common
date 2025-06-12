@@ -4,20 +4,29 @@ import { FastifyHttpRequest } from "./lib/interfaces/FastifyHttpRequest";
 import { validateRequest } from "./lib/validation/validator";
 import { HandleApiRequestOptions } from "./lib/interfaces/HandleApiRequestOptions";
 import { logRequest } from "./lib/logger";
-import { sendErrorResponse, sendResponse } from "./lib/utils/utils";
+import {
+  defaultTransformResponse,
+  sendErrorResponse,
+  sendResponse,
+} from "./lib/utils/utils";
 
 export function handleApiRequest<
   P extends HttpPayload,
   R extends FastifyHttpRequest,
   M extends ResponseData,
 >(options: HandleApiRequestOptions<P, M>) {
-  const { action, schema, transformResponse, handleAuth } = options;
+  const {
+    action,
+    schema,
+    transformResponse = defaultTransformResponse,
+    handleAuth,
+  } = options;
   return async (req: FastifyRequest<R>, reply: FastifyReply) => {
     try {
       logRequest(req);
 
       if (handleAuth) {
-        await handleAuth(req);
+        await handleAuth(req.headers as Record<string, string>);
       }
 
       const fields = schema

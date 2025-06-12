@@ -11,7 +11,7 @@ import { logError, logResponse } from "../logger";
 interface SendResponseOptions<M extends ResponseData> {
   reply: FastifyReply;
   data: M | M[];
-  transformResponse: (data: unknown) => M | M[];
+  transformResponse: (data: any) => M | M[];
 }
 
 export function sendResponse<M extends ResponseData>(
@@ -69,4 +69,8 @@ function buildGeneralErrorResponse(error: Error) {
   };
 
   return res;
+}
+
+export function defaultTransformResponse(data: any) {
+  return data as ResponseData | ResponseData[];
 }

@@ -37,8 +37,8 @@ export const POST = handleApiRequest({
 import { handleApiRequest } from "@fistware/next-core";
 import Joi from "joi";
 
-const authHandler = async (req) => {
-  const token = req.headers.get("authorization");
+const authHandler = async (headers) => {
+  const token = headers.get("authorization");
   if (!token || token !== "Bearer my-secret-token") {
   throw new Error("Unauthorized");
   }
