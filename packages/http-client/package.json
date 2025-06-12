@@ -23,11 +23,11 @@
   ],
   "devDependencies": {
     "@fistware/lint-ts": "1.0.2",
-    "@types/node": "24.0.0",
+    "@types/node": "24.0.1",
     "typescript": "5.8.3"
   },
   "dependencies": {
-    "@fistware/http-core": "1.0.1",
-    "@fistware/logger": "1.0.1"
+    "@fistware/http-core": "1.0.2",
+    "@fistware/logger": "1.0.2"
   }
 }

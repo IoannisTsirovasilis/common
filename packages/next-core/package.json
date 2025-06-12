@@ -23,14 +23,14 @@
   ],
   "devDependencies": {
     "@fistware/lint-next": "1.0.1",
-    "@types/node": "24.0.0",
+    "@types/node": "24.0.1",
     "typescript": "5.8.3",
-    "@types/react": "19.1.7",
+    "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6"
   },
   "dependencies": {
-    "@fistware/http-core": "1.0.1",
-    "@fistware/logger": "1.0.1",
+    "@fistware/http-core": "1.0.2",
+    "@fistware/logger": "1.0.2",
     "next": "15.3.3",
     "react": "19.1.0",
     "react-dom": "19.1.0"
