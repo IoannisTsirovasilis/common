@@ -22,7 +22,7 @@
     "dist"
   ],
   "devDependencies": {
-    "@fistware/lint-next": "1.0.1",
+    "@fistware/lint-next": "1.0.2",
     "@types/node": "24.0.1",
     "typescript": "5.8.3",
     "@types/react": "19.1.8",
