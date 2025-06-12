@@ -29,6 +29,7 @@ function showChangesForPackage(dirName: string) {
   const baseRef = getLastTag(pkgName);
 
   showChanges(baseRef, dirName, pkgsDir);
+  showCommits(baseRef, dirName, pkgsDir);
 }
 
 function run(cmd: string): string {
@@ -81,5 +82,23 @@ function showChanges(baseRef: string, dirName: string, packagesDir: string) {
     console.log(diff || "(no changes)");
   } catch {
     console.log("(no changes)");
+  }
+}
+
+function showCommits(baseRef: string, dirName: string, packagesDir: string) {
+  try {
+    const commitLog = run(
+      `git log ${baseRef}..HEAD --pretty=format:"%h - %s" -- "${join(
+        packagesDir,
+        dirName,
+      )}"`,
+    );
+    console.log(
+      commitLog
+        ? `Commits since ${baseRef}:\n${commitLog}`
+        : "(no new commits)",
+    );
+  } catch {
+    console.log("(no new commits)");
   }
 }
