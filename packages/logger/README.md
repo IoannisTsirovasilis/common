@@ -1,6 +1,6 @@
 # Logger
 
-A simple logging utility for F projects.
+A simple logging utility for Fistware projects.
 
 ## Features
 
@@ -35,6 +35,16 @@ npm run build
 ### Lint
 ```bash
 npm run lint
+```
+
+### Test
+```bash
+npm test
+```
+
+### Test Coverage
+```bash
+npm run test:coverage
 ```
 
 

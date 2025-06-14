@@ -1,15 +1,18 @@
 {
   "name": "@fistware/logger",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "engines": {
     "node": ">=22.0.0"
   },
+  "type": "module",
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build",
-    "lint": "eslint ./src"
+    "lint": "eslint ./src",
+    "test": "node --experimental-test-coverage --test-coverage-include=src/*.ts --test --loader ts-node/esm",
+    "test:coverage": "node --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info  --test-coverage-include=src/*.ts --test --loader ts-node/esm"
   },
   "keywords": [],
   "author": {
@@ -27,6 +30,7 @@
   "devDependencies": {
     "@fistware/lint-ts": "1.1.0",
     "@types/node": "24.0.1",
+    "ts-node": "10.9.2",
     "typescript": "5.8.3"
   }
 }
