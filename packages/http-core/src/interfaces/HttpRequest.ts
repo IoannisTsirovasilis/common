@@ -1,4 +1,4 @@
-import { HttpPayload } from "./HttpPayload";
+import { HttpPayload } from "./HttpPayload.js";
 
 export interface HttpRequest<P extends HttpPayload> {
   headers?: Headers;

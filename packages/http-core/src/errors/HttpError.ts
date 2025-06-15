@@ -1,4 +1,4 @@
-import { ResponseCode } from "../enums/ResponseCode";
+import { ResponseCode } from "../enums/ResponseCode.js";
 
 export class HttpError extends Error {
   status: ResponseCode;

@@ -1,5 +1,5 @@
-import { ResponseCode } from "../enums/ResponseCode";
-import { HttpError } from "./HttpError";
+import { ResponseCode } from "../enums/ResponseCode.js";
+import { HttpError } from "./HttpError.js";
 
 export class UnauthorizedError extends HttpError {
   constructor() {
