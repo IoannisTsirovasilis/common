@@ -79,6 +79,21 @@ npm run build
 npm run lint
 ```
 
+### Empty dist Folder
+```bash
+npm run clean
+```
+
+### Test
+```bash
+npm test
+```
+
+### Test Coverage
+```bash
+npm run test:coverage
+```
+
 ## License
 
 UNLICENSED

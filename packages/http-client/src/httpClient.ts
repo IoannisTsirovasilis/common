@@ -10,7 +10,7 @@ import {
   buildOptions,
   buildResponse,
   maskSensitiveData,
-} from "./utils/httpUtils";
+} from "./utils/httpUtils.js";
 import { Logger, LoggerType } from "@fistware/logger";
 
 /**
