@@ -47,6 +47,11 @@ npm test
 npm run test:coverage
 ```
 
+### Empty dist Folder
+```bash
+npm run clean
+```
+
 
 ## License
 

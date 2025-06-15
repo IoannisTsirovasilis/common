@@ -8,6 +8,7 @@
   },
   "type": "module",
   "scripts": {
+    "clean": "tsc --build --clean",
     "build": "tsc",
     "prepare": "npm run build",
     "lint": "eslint ./src",
