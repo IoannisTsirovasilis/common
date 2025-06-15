@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { Logger } from "./logger.ts";
+import { Logger } from "./logger.js";
 
 test("Logger returns a pino logger instance", () => {
   const logger = Logger({});

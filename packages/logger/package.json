@@ -12,8 +12,8 @@
     "build": "tsc",
     "prepare": "npm run build",
     "lint": "eslint ./src",
-    "test": "node --experimental-test-coverage --test-coverage-include=src/*.ts --test --loader ts-node/esm",
-    "test:coverage": "node --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info  --test-coverage-include=src/*.ts --test --loader ts-node/esm"
+    "test": "node --experimental-test-coverage --test-coverage-exclude=src/**/*.test.ts --test --loader ts-node/esm src/**/*.test.ts",
+    "test:coverage": "node --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info  --test-coverage-exclude=src/**/*.test.ts --test --loader ts-node/esm src/**/*.test.ts"
   },
   "keywords": [],
   "author": {
