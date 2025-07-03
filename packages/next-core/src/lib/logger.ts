@@ -1,7 +1,7 @@
 import { HttpResponse, ResponseData } from "@fistware/http-core";
 import { Logger } from "@fistware/logger";
 import { NextRequest } from "next/server";
-import { NextRequestParts } from "./interfaces/NextRequestParts";
+import { NextRequestParts } from "./interfaces/NextRequestParts.js";
 
 export const logger = Logger({
   level: String(process.env.LOG_LEVEL || "info"),

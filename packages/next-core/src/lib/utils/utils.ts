@@ -7,10 +7,10 @@ import {
   ResponseData,
 } from "@fistware/http-core";
 import { NextRequest, NextResponse } from "next/server";
-import { HEADERS } from "../constants/constants";
-import { logError } from "../logger";
-import { NextRequestProps } from "../interfaces/NextRequestProps";
-import { NextRequestParts } from "../interfaces/NextRequestParts";
+import { HEADERS } from "../constants/constants.js";
+import { logError } from "../logger.js";
+import { NextRequestProps } from "../interfaces/NextRequestProps.js";
+import { NextRequestParts } from "../interfaces/NextRequestParts.js";
 
 export function buildServiceRequest<
   P extends HttpPayload,

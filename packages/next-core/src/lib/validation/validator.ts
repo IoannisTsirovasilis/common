@@ -1,7 +1,7 @@
 import { BadRequestError, HttpPayload } from "@fistware/http-core";
 import Joi from "joi";
 import { NextRequest } from "next/server";
-import { NextRequestParts } from "../interfaces/NextRequestParts";
+import { NextRequestParts } from "../interfaces/NextRequestParts.js";
 
 export function validateSchema(schema: Joi.Schema, value: unknown) {
   const result = schema.validate(value, {

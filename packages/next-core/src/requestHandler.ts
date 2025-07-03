@@ -1,17 +1,17 @@
 import { HttpPayload, HttpRequest, ResponseData } from "@fistware/http-core";
-import { validateRequest } from "./lib/validation/validator";
-import { HandleApiRequestOptions } from "./lib/interfaces/HandleApiRequestOptions";
-import { logRequest, logResponse } from "./lib/logger";
+import { validateRequest } from "./lib/validation/validator.js";
+import { HandleApiRequestOptions } from "./lib/interfaces/HandleApiRequestOptions.js";
+import { logRequest, logResponse } from "./lib/logger.js";
 import {
   buildResponse,
   buildServiceRequest,
   defaultTransformResponse,
   extractRequestParts,
   handleError,
-} from "./lib/utils/utils";
+} from "./lib/utils/utils.js";
 import { NextRequest, NextResponse } from "next/server";
-import { HEADERS } from "./lib/constants/constants";
-import { NextRequestProps } from "./lib/interfaces/NextRequestProps";
+import { NextRequestProps } from "./lib/interfaces/NextRequestProps.js";
+import { HEADERS } from "./lib/constants/constants.js";
 
 export function handleApiRequest<
   P extends HttpPayload,
