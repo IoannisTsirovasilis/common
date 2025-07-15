@@ -145,7 +145,9 @@ async function execute<P extends HttpPayload, M extends ResponseData>(
 
   const response = await fetch(url, {
     ...httpOptions,
-    body: JSON.stringify(request.payload),
+    ...(method === HttpRequestMethod.GET
+      ? {}
+      : { body: JSON.stringify(request.payload) }),
   });
 
   const result = await buildResponse<M>(response);
