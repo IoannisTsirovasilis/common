@@ -4,7 +4,7 @@ An HTTP client library for Fistware applications.
 
 ## Features
 
-- Supports GET, POST, PUT, DELETE
+- Supports GET, POST, PUT, DELETE, PATCH
 - Customizable headers and query parameters
 - Handles JSON request and response
 - Easy to use and extend
@@ -43,7 +43,7 @@ interface HttpClientOptions
 /**
  * Creates an HTTP client instance with predefined configuration options.
  *
- * The returned client provides methods for making HTTP requests (`get`, `post`, `put`, `delete`)
+ * The returned client provides methods for making HTTP requests (`get`, `post`, `put`, `delete`, `patch`)
  * to a specified base URL. Each method is generic and supports typed payloads and responses.
  * Logging can be enabled and configured via the options.
  *
@@ -52,7 +52,7 @@ interface HttpClientOptions
  * @param options.logging - Optional. Enables or disables logging of requests and responses.
  * @param options.loggingLevel - Optional. Specifies the logging level (e.g., 'info', 'debug').
  *
- * @returns An object with `get`, `post`, `put`, and `delete` methods for making HTTP requests.
+ * @returns An object with `get`, `post`, `put`, `delete` and `patch` methods for making HTTP requests.
  *
  * @template P - The type of the request payload.
  * @template Rq - The type of the HTTP request object.
