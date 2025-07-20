@@ -88,6 +88,20 @@ export function HttpClient(options: HttpClientOptions) {
         method: HttpRequestMethod.PUT,
         logger,
       }),
+    patch: <
+      P extends HttpPayload,
+      Rq extends HttpRequest<P>,
+      M extends ResponseData,
+    >(
+      url: string,
+      request: Rq,
+    ): Promise<HttpResponse<M>> =>
+      execute<P, M>({
+        url: `${baseUrl}${url}`,
+        request,
+        method: HttpRequestMethod.PATCH,
+        logger,
+      }),
     delete: <
       P extends HttpPayload,
       Rq extends HttpRequest<P>,
