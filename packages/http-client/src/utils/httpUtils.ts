@@ -10,6 +10,7 @@ export async function buildResponse<M extends ResponseData>(
   const body: HttpResponse<M> = await response.json();
 
   const result: HttpResponse<M> = {
+    headers: response.headers,
     data: body.data,
     message: body.message,
     status: body.status,
