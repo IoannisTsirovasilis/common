@@ -29,9 +29,9 @@
     "pino": "9.7.0"
   },
   "devDependencies": {
-    "@fistware/lint-ts": "1.1.0",
-    "@types/node": "24.0.15",
+    "@fistware/lint-ts": "1.1.1",
+    "@types/node": "24.2.0",
     "ts-node": "10.9.2",
-    "typescript": "5.8.3"
+    "typescript": "5.9.2"
   }
 }
