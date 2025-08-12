@@ -5,6 +5,17 @@ All notable changes to the `@fistware/logger` package will be documented in this
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [2.0.1] - Current Version
+
+### Changed
+- Updated Pino dependency to v9.8.0 for improved performance and security
+- Updated @types/node to v24.2.1 for better TypeScript support
+
+### Fixed
+- Minor dependency updates for security and stability improvements
+
 ## [2.0.0] - 2025-06-14
 
 ### Added
