@@ -5,6 +5,19 @@ All notable changes to the `@fistware/next-core` package will be documented in t
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [3.2.1] - 2025-08-12
+
+### Changed
+- Updated Next.js dependency to v15.4.6 for improved performance and security
+- Updated @types/node to v24.2.1 for better TypeScript support
+- Updated @types/react to v19.1.10 for better React type definitions
+- Updated @fistware/logger to v2.0.1 for enhanced logging capabilities
+
+### Fixed
+- Minor dependency updates for security and stability improvements
+
 ## [3.2.0] - 2025-08-12
 
 ### Added

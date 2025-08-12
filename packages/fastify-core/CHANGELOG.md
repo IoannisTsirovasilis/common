@@ -5,6 +5,18 @@ All notable changes to the `@fistware/fastify-core` package will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [2.2.1] - 2025-08-12
+
+### Changed
+- Updated Fastify dependency to v5.5.0 for improved performance and security
+- Updated @types/node to v24.2.1 for better TypeScript support
+- Updated @fistware/logger to v2.0.1 for enhanced logging capabilities
+
+### Fixed
+- Minor dependency updates for security and stability improvements
+
 ## [2.2.0] - 2025-08-12
 
 ### Added
