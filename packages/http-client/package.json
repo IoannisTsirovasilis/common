@@ -1,6 +1,6 @@
 {
   "name": "@fistware/http-client",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
@@ -32,7 +32,7 @@
     "ts-node": "10.9.2"
   },
   "dependencies": {
-    "@fistware/http-core": "2.1.0",
+    "@fistware/http-core": "2.2.0",
     "@fistware/logger": "2.0.0"
   }
 }
