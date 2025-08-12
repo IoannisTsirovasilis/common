@@ -6,5 +6,5 @@ export { HttpResponse } from "./interfaces/HttpResponse.js";
 export { ResponseData } from "./interfaces/ResponseData.js";
 export { BadRequestError } from "./errors/BadRequestError.js";
 export { EntityNotFoundError } from "./errors/EntityNotFoundError.js";
-export { HttpError } from "./errors/HttpError.js";
+export { HttpError, HttpErrorOptions } from "./errors/HttpError.js";
 export { UnauthorizedError } from "./errors/UnauthorizedError.js";
