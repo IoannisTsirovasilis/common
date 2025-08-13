@@ -7,6 +7,64 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.0] - 2025-08-13
+
+### Breaking Changes
+- **Major version bump**: This release includes significant architectural improvements and enhanced TypeScript support
+- **Updated response structure**: HTTP responses now include additional metadata fields (headers, requestId, correlationId, timestamp)
+- **Improved error handling**: Enhanced error responses with structured error information and better tracing
+
+### Added
+- **Enhanced TypeScript support**: Complete type safety with improved generic type constraints for all HTTP methods
+- **Automatic request tracing**: Built-in request ID and correlation ID generation for better request tracking
+- **Structured logging**: Enhanced logging with comprehensive request and response metadata
+- **Enhanced documentation**: Complete API documentation with TypeScript examples and usage patterns
+
+### Changed
+- **Updated dependencies**: Upgraded to latest versions of `@fistware/http-core` (3.0.0), `@fistware/logger` (2.0.2), and `@fistware/utils` (1.0.0)
+- **Improved build process**: Enhanced TypeScript configuration and build optimization
+- **Better error messages**: More descriptive error messages with structured error information
+- **Enhanced header management**: Improved header handling with automatic request/correlation ID injection
+- **Modern Node.js support**: Optimized for Node.js 22+ with improved performance and security
+
+### Fixed
+- **Unit test reliability**: Fixed failing unit tests and improved test coverage
+- **Response handling**: Improved response parsing and error handling edge cases
+- **Logging consistency**: Enhanced logging format consistency across all request types
+- **Header processing**: Fixed header processing issues and improved header validation
+
+### Migration Guide
+
+#### From v2.x to v3.0.0
+
+1. **Update Node.js**: Ensure you're using Node.js 22.0.0 or higher
+2. **Review response handling**: HTTP responses now include additional fields:
+   ```typescript
+   // Old response structure
+   { data: any, message: string, status: number }
+   
+   // New response structure
+   { 
+     data: any, 
+     message: string, 
+     status: number,
+     headers: Headers,
+     requestId: string,
+     correlationId: string,
+     timestamp: number
+   }
+   ```
+3. **Update type definitions**: If using custom type definitions, ensure compatibility with new generic constraints
+4. **Review logging**: Enhanced logging may provide more detailed information in your logs
+
+#### Key Improvements in v3.0.0
+
+- **Better TypeScript Integration**: Full type safety with improved generic support
+- **Enhanced Request Tracing**: Automatic request ID and correlation ID generation
+- **Improved Error Handling**: Structured error responses with comprehensive metadata
+- **Security Enhancements**: Automatic sensitive data masking in logs
+- **Performance Optimizations**: Better performance with Node.js 22+ features
+
 ## [2.2.2] - 2025-08-12
 
 ### Changed

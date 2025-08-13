@@ -1,12 +1,16 @@
 import {
+  HttpPayload,
+  HttpRequest,
   HttpRequestMethod,
   HttpResponse,
   ResponseData,
 } from "@fistware/http-core";
+import { getUnixTimestamp } from "@fistware/utils";
 
-export async function buildResponse<M extends ResponseData>(
-  response: Response,
-): Promise<HttpResponse<M>> {
+export async function buildResponse<
+  M extends ResponseData,
+  P extends HttpPayload,
+>(response: Response, request: HttpRequest<P>): Promise<HttpResponse<M>> {
   const body: HttpResponse<M> = await response.json();
 
   const result: HttpResponse<M> = {
@@ -14,6 +18,9 @@ export async function buildResponse<M extends ResponseData>(
     data: body.data,
     message: body.message,
     status: body.status,
+    requestId: String(request.headers?.get("x-request-id")),
+    correlationId: String(request.headers?.get("x-correlation-id")),
+    timestamp: getUnixTimestamp(),
   };
 
   return result;
@@ -25,17 +32,13 @@ export function buildOptions(headers: Headers, method: HttpRequestMethod) {
     h.set(k, v);
   });
 
+  const requestId = crypto.randomUUID();
+  const correlationId = h.get("x-correlation-id") ?? crypto.randomUUID();
+  h.set("x-request-id", requestId);
+  h.set("x-correlation-id", correlationId);
+
   return {
     method,
     headers: h,
   };
-}
-
-export function maskSensitiveData(headers: Headers) {
-  const headersObj = Object.fromEntries(headers.entries());
-  headersObj.Authorization = String(
-    headers?.get("Authorization")?.split(" ")[0],
-  );
-
-  return headersObj;
 }

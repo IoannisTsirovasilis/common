@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { buildResponse, buildOptions, maskSensitiveData } from "./httpUtils.js";
+import { buildResponse, buildOptions } from "./httpUtils.js";
 import { HttpRequestMethod, HttpResponse } from "@fistware/http-core";
 
 function MockResponse(jsonData: HttpResponse<any>) {
@@ -10,6 +10,7 @@ function MockResponse(jsonData: HttpResponse<any>) {
 
   return {
     json,
+    headers: new Headers(),
   } as Response;
 }
 
@@ -44,10 +45,24 @@ test("buildResponse returns correct HttpResponse", async () => {
     data: { foo: "bar" },
     message: "ok",
     status: 200,
+    requestId: "123",
+    correlationId: "456",
+    timestamp: 1234567890,
   };
   const response = MockResponse(mockData);
-  const result = await buildResponse(response);
-  assert.deepEqual(result, mockData);
+  const result = await buildResponse(response, {
+    headers: new Headers(),
+    payload: {},
+  });
+
+  assert.equal(result.data, mockData.data);
+  assert.equal(result.message, mockData.message);
+  assert.equal(result.status, mockData.status);
+
+  assert.ok(result.headers);
+  assert.ok(typeof result.requestId === "string");
+  assert.ok(typeof result.correlationId === "string");
+  assert.ok(typeof result.timestamp === "number");
 });
 
 test("buildOptions copies headers and sets method", () => {
@@ -60,21 +75,4 @@ test("buildOptions copies headers and sets method", () => {
   assert.equal(options.method, method);
   assert.equal(options.headers.get("X-Test"), "abc");
   assert.equal(options.headers.get("Authorization"), "Bearer token");
-});
-
-test("maskSensitiveData masks Authorization header", () => {
-  const headers = MockHeaders({
-    Authorization: "Bearer secret-token",
-    "X-Test": "abc",
-  });
-  const masked = maskSensitiveData(headers);
-  assert.equal(masked.Authorization, "Bearer");
-  assert.equal(masked["X-Test"], "abc");
-});
-
-test("maskSensitiveData handles missing Authorization header", () => {
-  const headers = MockHeaders({ "X-Test": "abc" });
-  const masked = maskSensitiveData(headers);
-  assert.equal(masked.Authorization, "undefined");
-  assert.equal(masked["X-Test"], "abc");
 });

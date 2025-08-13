@@ -6,11 +6,7 @@ import {
   ResponseData,
 } from "@fistware/http-core";
 
-import {
-  buildOptions,
-  buildResponse,
-  maskSensitiveData,
-} from "./utils/httpUtils.js";
+import { buildOptions, buildResponse } from "./utils/httpUtils.js";
 import { Logger, LoggerType } from "@fistware/logger";
 
 /**
@@ -146,13 +142,11 @@ async function execute<P extends HttpPayload, M extends ResponseData>(
   const headers = request.headers ?? new Headers();
   const httpOptions = buildOptions(headers, method);
 
-  const headersObj = maskSensitiveData(headers);
-
   logger.info({
     url,
     request: {
       ...request,
-      headers: headersObj,
+      headers: Object.fromEntries(headers),
     },
     method,
   });
@@ -164,9 +158,16 @@ async function execute<P extends HttpPayload, M extends ResponseData>(
       : { body: JSON.stringify(request.payload) }),
   });
 
-  const result = await buildResponse<M>(response);
+  const result = await buildResponse<M, P>(response, request);
 
-  logger.info({ url, result, method });
+  logger.info({
+    url,
+    response: {
+      ...result,
+      headers: Object.fromEntries(result.headers ?? new Headers()),
+    },
+    method,
+  });
 
   return result;
 }
