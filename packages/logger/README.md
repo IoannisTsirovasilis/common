@@ -6,6 +6,7 @@ A simple logging utility for Fistware projects.
 
 - Multiple log levels: `debug`, `info`, `warn`, `error`
 - Easy integration with existing projects
+- Type-safe logging with full TypeScript support
 
 ## Installation
 
@@ -24,6 +25,15 @@ logger.info('Application started');
 logger.warn('Low disk space');
 logger.error('Unhandled exception');
 ```
+
+## Dependencies
+
+This package uses [Pino](https://getpino.io/) v9.9.0 for high-performance structured logging. Pino is one of the fastest Node.js logging libraries available, providing:
+
+- Extremely fast logging performance
+- Structured JSON output
+- Low overhead in production
+- Excellent debugging capabilities
 
 ## Development
 
