@@ -6,4 +6,7 @@ export interface HttpResponse<M extends ResponseData> {
   data: M;
   message: string;
   status: ResponseCode;
+  requestId: string;
+  correlationId: string;
+  timestamp: number;
 }

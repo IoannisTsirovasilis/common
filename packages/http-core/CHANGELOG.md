@@ -5,6 +5,23 @@ All notable changes to the `@fistware/http-core` package will be documented in t
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2025-08-13
+
+### Breaking Changes
+- **HttpResponse interface**: `requestId`, `correlationId`, and `timestamp` are now mandatory fields
+  - `requestId`: Required string for request identification and tracing
+  - `correlationId`: Required string for correlation across services
+  - `timestamp`: Required number representing the response timestamp
+- All existing code using `HttpResponse` must be updated to provide these mandatory fields
+
+### Added
+- Enhanced request tracing with mandatory identification fields
+- Improved debugging and monitoring capabilities through required request tracking
+
+### Changed
+- Updated `HttpResponse` interface to enforce consistent request tracing
+- Improved type safety by making tracing fields mandatory
+
 ## [2.2.0] - 2025-08-12
 
 ### Added
