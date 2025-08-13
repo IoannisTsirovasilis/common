@@ -1,6 +1,6 @@
 {
   "name": "@fistware/fastify-core",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "engines": {
@@ -29,8 +29,9 @@
   },
   "dependencies": {
     "fastify": "5.5.0",
-    "@fistware/http-core": "2.2.0",
-    "@fistware/logger": "2.0.1",
+    "@fistware/http-core": "3.0.0",
+    "@fistware/logger": "2.0.2",
+    "@fistware/utils": "1.0.0",
     "joi": "18.0.0"
   }
 }

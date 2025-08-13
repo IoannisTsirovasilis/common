@@ -7,6 +7,7 @@ import {
 import { FastifyReply } from "fastify";
 import { HEADERS } from "../constants/constants";
 import { logError, logResponse } from "../logger";
+import { getUnixTimestamp } from "@fistware/utils";
 
 interface SendResponseOptions<M extends ResponseData> {
   reply: FastifyReply;
@@ -23,6 +24,9 @@ export function sendResponse<M extends ResponseData>(
     data: transformResponse(data),
     message: "",
     status: ResponseCode.Ok,
+    requestId: String(reply.getHeader("x-request-id")),
+    correlationId: String(reply.getHeader("x-correlation-id")),
+    timestamp: getUnixTimestamp(),
   };
 
   Object.entries(HEADERS).forEach(([key, value]) => reply.header(key, value));
@@ -55,6 +59,9 @@ function buildErrorResponse(error: HttpError) {
     data: {},
     message: error.message,
     status: error.status,
+    requestId: String(error.requestId),
+    correlationId: String(error.correlationId),
+    timestamp: getUnixTimestamp(),
   };
 
   return res;
@@ -66,6 +73,9 @@ function buildGeneralErrorResponse(error: Error) {
     data: {},
     message: error.message,
     status,
+    requestId: "",
+    correlationId: "",
+    timestamp: getUnixTimestamp(),
   };
 
   return res;

@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.3.0] - 2025-08-13
+
+### Changed
+- Updated @fistware/http-core to v3.0.0 for improved HTTP handling and error management
+- Updated @fistware/logger to v2.0.2 for enhanced logging capabilities and bug fixes
+- Added @fistware/utils v1.0.0 dependency for improved utility functions
+- Updated Joi to v18.0.0 for improved validation capabilities
+- Updated @fistware/lint-ts to v1.1.1 for enhanced linting rules
+- Minor dependency updates for security and stability improvements
+
+### Fixed
+- Improved error handling and validation reliability
+- Enhanced logging integration with updated dependencies
+
 ## [2.2.1] - 2025-08-12
 
 ### Changed
