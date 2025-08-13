@@ -39,7 +39,7 @@ export function handleApiRequest<
 
       const data = await action(serviceRequest);
 
-      const response = buildResponse(data, transformResponse);
+      const response = buildResponse(data, transformResponse, req);
 
       logResponse(response, req);
 
@@ -48,7 +48,7 @@ export function handleApiRequest<
         status: response.status,
       });
     } catch (error: unknown) {
-      return handleError(error);
+      return handleError(error, req);
     }
   };
 }

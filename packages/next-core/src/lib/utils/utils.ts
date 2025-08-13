@@ -11,6 +11,7 @@ import { HEADERS } from "../constants/constants.js";
 import { logError } from "../logger.js";
 import { NextRequestProps } from "../interfaces/NextRequestProps.js";
 import { NextRequestParts } from "../interfaces/NextRequestParts.js";
+import { getUnixTimestamp } from "@fistware/utils";
 
 export function buildServiceRequest<
   P extends HttpPayload,
@@ -30,25 +31,33 @@ export function buildServiceRequest<
 export function buildResponse<M extends ResponseData>(
   data: M | M[],
   transformResponse: (data: any) => M | M[],
+  req: NextRequest,
 ) {
   const response: HttpResponse<M | M[]> = {
     data: transformResponse(data),
     message: "",
     status: ResponseCode.Ok,
+    requestId: String(req.headers.get("x-request-id")),
+    correlationId: String(req.headers.get("x-correlation-id")),
+    timestamp: getUnixTimestamp(),
   };
 
   return response;
 }
 
-export function handleError(error: unknown) {
-  let response: HttpResponse<{}>;
-  if (error instanceof HttpError) {
-    response = buildErrorResponse(error);
-  } else {
-    response = buildGeneralErrorResponse(
-      new Error("Something went wrong. Please try again later."),
-    );
-  }
+export function handleError(error: unknown, req: NextRequest) {
+  const err =
+    error instanceof HttpError
+      ? error
+      : new HttpError(
+          "Something went wrong. Please try again later.",
+          ResponseCode.InternalServerError,
+          {
+            requestId: String(req.headers.get("x-request-id")),
+            correlationId: String(req.headers.get("x-correlation-id")),
+          },
+        );
+  const response: HttpResponse<{}> = buildErrorResponse(err);
 
   logError(error, response);
 
@@ -63,17 +72,9 @@ function buildErrorResponse(error: HttpError) {
     data: {},
     message: error.message,
     status: error.status,
-  };
-
-  return res;
-}
-
-function buildGeneralErrorResponse(error: Error) {
-  const status = ResponseCode.InternalServerError;
-  const res: HttpResponse<{}> = {
-    data: {},
-    message: error.message,
-    status,
+    requestId: String(error.requestId),
+    correlationId: String(error.correlationId),
+    timestamp: getUnixTimestamp(),
   };
 
   return res;

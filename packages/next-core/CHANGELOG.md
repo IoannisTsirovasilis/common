@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.3.0] - 2025-08-13
+
+### Changed
+- Updated @fistware/http-core to v3.0.0 for improved HTTP handling and error management
+- Updated @fistware/logger to v2.0.2 for enhanced logging capabilities and bug fixes
+- Added @fistware/utils v1.0.0 dependency for improved utility functions
+- Minor dependency updates for security and stability improvements
+
+### Fixed
+- Improved logging integration and error handling reliability
+
 ## [3.2.1] - 2025-08-12
 
 ### Changed
