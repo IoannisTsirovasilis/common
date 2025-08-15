@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.1] - 2025-08-15
+
+### Fixed
+- Correctly populate `requestId` and `correlationId` in `HttpResponse` outputs
+- Ensure tracing fields are set consistently across all HTTP methods (GET, POST, PUT, PATCH, DELETE)
+- Align response metadata with `@fistware/http-core@3.0.0` structure
+
 ## [3.0.0] - 2025-08-13
 
 ### Breaking Changes
