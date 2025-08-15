@@ -50,10 +50,7 @@ test("buildResponse returns correct HttpResponse", async () => {
     timestamp: 1234567890,
   };
   const response = MockResponse(mockData);
-  const result = await buildResponse(response, {
-    headers: new Headers(),
-    payload: {},
-  });
+  const result = await buildResponse(response);
 
   assert.equal(result.data, mockData.data);
   assert.equal(result.message, mockData.message);

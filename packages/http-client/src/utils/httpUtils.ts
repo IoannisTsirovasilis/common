@@ -1,16 +1,13 @@
 import {
-  HttpPayload,
-  HttpRequest,
   HttpRequestMethod,
   HttpResponse,
   ResponseData,
 } from "@fistware/http-core";
 import { getUnixTimestamp } from "@fistware/utils";
 
-export async function buildResponse<
-  M extends ResponseData,
-  P extends HttpPayload,
->(response: Response, request: HttpRequest<P>): Promise<HttpResponse<M>> {
+export async function buildResponse<M extends ResponseData>(
+  response: Response,
+): Promise<HttpResponse<M>> {
   const body: HttpResponse<M> = await response.json();
 
   const result: HttpResponse<M> = {
@@ -18,8 +15,8 @@ export async function buildResponse<
     data: body.data,
     message: body.message,
     status: body.status,
-    requestId: String(request.headers?.get("x-request-id")),
-    correlationId: String(request.headers?.get("x-correlation-id")),
+    requestId: body.requestId,
+    correlationId: body.correlationId,
     timestamp: getUnixTimestamp(),
   };
 

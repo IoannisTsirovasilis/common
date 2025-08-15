@@ -158,7 +158,7 @@ async function execute<P extends HttpPayload, M extends ResponseData>(
       : { body: JSON.stringify(request.payload) }),
   });
 
-  const result = await buildResponse<M, P>(response, request);
+  const result = await buildResponse<M>(response);
 
   logger.info({
     url,
