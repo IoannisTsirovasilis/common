@@ -17,7 +17,8 @@ export function buildServiceRequest<
   P extends HttpPayload,
   Rs extends HttpRequest<P>,
 >(req: NextRequest, payload: P) {
-  const headers = new Headers();
+  const { headers } = req;
+
   headers.set("x-forwarded-for", req.headers.get("x-forwarded-for") ?? "");
 
   const result = {
