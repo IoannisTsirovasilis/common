@@ -16,6 +16,7 @@ export class HttpError extends Error {
     options?: HttpErrorOptions,
   ) {
     super(message);
+    this.name = "HttpError";
     this.message = message;
     this.status = status;
     this.requestId = options?.requestId;
