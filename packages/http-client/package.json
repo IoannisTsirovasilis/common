@@ -1,6 +1,6 @@
 {
   "name": "@fistware/http-client",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
@@ -27,12 +27,12 @@
   ],
   "devDependencies": {
     "@fistware/lint-ts": "1.1.1",
-    "@types/node": "24.2.1",
+    "@types/node": "24.3.0",
     "typescript": "5.9.2",
     "ts-node": "10.9.2"
   },
   "dependencies": {
-    "@fistware/http-core": "3.0.0",
+    "@fistware/http-core": "3.0.1",
     "@fistware/logger": "2.0.2",
     "@fistware/utils": "1.0.0"
   }
