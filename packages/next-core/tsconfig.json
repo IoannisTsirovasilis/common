@@ -8,6 +8,7 @@
     "esModuleInterop": true,
     "strict": true,
     "moduleResolution": "node",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "jsx": "react-jsx"
   }
 }

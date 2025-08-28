@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.4.0] - 2025-08-28
+- Add `NextError` class for better error handling in Next.js applications
+- Add `renderAsyncOrError` function for better error handling in Next.js applications
+
 ## [3.3.4] - 2025-08-28
 
 ### Changed
