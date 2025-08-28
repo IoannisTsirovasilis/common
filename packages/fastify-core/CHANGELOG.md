@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.3.2] - 2025-08-28
+
+### Fixed
+- Fix bug where `HttpError` was not correctly propagating error tracing metadata in error response
+
+## [2.3.1] - 2025-08-23
+
+### Changed
+- Update @fistware/http-core to v3.0.1 for improved HTTP handling and error management
+- Update Joi version to 18.0.1 for improved performance and security
+
 ## [2.3.0] - 2025-08-13
 
 ### Changed

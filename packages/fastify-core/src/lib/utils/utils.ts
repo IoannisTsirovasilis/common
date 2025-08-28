@@ -24,8 +24,8 @@ export function sendResponse<M extends ResponseData>(
     data: transformResponse(data),
     message: "",
     status: ResponseCode.Ok,
-    requestId: String(reply.getHeader("x-request-id")),
-    correlationId: String(reply.getHeader("x-correlation-id")),
+    requestId: reply.getHeader("x-request-id")?.toString() || "",
+    correlationId: reply.getHeader("x-correlation-id")?.toString() || "",
     timestamp: getUnixTimestamp(),
   };
 
@@ -59,8 +59,8 @@ function buildErrorResponse(error: HttpError) {
     data: {},
     message: error.message,
     status: error.status,
-    requestId: String(error.requestId),
-    correlationId: String(error.correlationId),
+    requestId: error.requestId || "",
+    correlationId: error.correlationId || "",
     timestamp: getUnixTimestamp(),
   };
 

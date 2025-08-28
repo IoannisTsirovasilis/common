@@ -38,8 +38,8 @@ export function buildResponse<M extends ResponseData>(
     data: transformResponse(data),
     message: "",
     status: ResponseCode.Ok,
-    requestId: String(req.headers.get("x-request-id")),
-    correlationId: String(req.headers.get("x-correlation-id")),
+    requestId: extractRequestId(req),
+    correlationId: extractCorrelationId(req),
     timestamp: getUnixTimestamp(),
   };
 
@@ -54,8 +54,8 @@ export function handleError(error: unknown, req: NextRequest) {
           "Something went wrong. Please try again later.",
           ResponseCode.InternalServerError,
           {
-            requestId: String(req.headers.get("x-request-id")),
-            correlationId: String(req.headers.get("x-correlation-id")),
+            requestId: extractRequestId(req),
+            correlationId: extractCorrelationId(req),
           },
         );
   const response: HttpResponse<{}> = buildErrorResponse(err);
@@ -73,8 +73,8 @@ function buildErrorResponse(error: HttpError) {
     data: {},
     message: error.message,
     status: error.status,
-    requestId: String(error.requestId),
-    correlationId: String(error.correlationId),
+    requestId: error.requestId || "",
+    correlationId: error.correlationId || "",
     timestamp: getUnixTimestamp(),
   };
 
@@ -131,4 +131,12 @@ function extractHeaders(req: NextRequest) {
     headers[key] = value;
   });
   return headers;
+}
+
+export function extractRequestId(req: NextRequest) {
+  return req.headers.get("x-request-id") || "";
+}
+
+export function extractCorrelationId(req: NextRequest) {
+  return req.headers.get("x-correlation-id") || "";
 }

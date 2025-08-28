@@ -1,7 +1,8 @@
-import { BadRequestError, HttpPayload } from "@fistware/http-core";
+import { HttpPayload, HttpError, ResponseCode } from "@fistware/http-core";
 import Joi from "joi";
 import { NextRequest } from "next/server";
 import { NextRequestParts } from "../interfaces/NextRequestParts.js";
+import { extractCorrelationId, extractRequestId } from "../utils/utils.js";
 
 export function validateSchema(schema: Joi.Schema, value: unknown) {
   const result = schema.validate(value, {
@@ -29,7 +30,10 @@ export function validateRequest<P extends HttpPayload>(
 
   if (error) {
     const message = error.details.map((detail) => detail.message).join(", ");
-    throw new BadRequestError(message);
+    throw new HttpError(message, ResponseCode.BadRequest, {
+      requestId: extractRequestId(req),
+      correlationId: extractCorrelationId(req),
+    });
   }
 
   return value as P;
