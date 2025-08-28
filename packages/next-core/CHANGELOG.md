@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.3.4] - 2025-08-28
+
+### Changed
+- Update Next.js to v15.5.2 for improved performance and security
+
 ## [3.3.3] - 2025-08-28
 
 ### Fixed
