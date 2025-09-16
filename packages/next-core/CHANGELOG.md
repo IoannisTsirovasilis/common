@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.4.1] - 2025-09-16
+
+### Changed
+- Update @fistware/logger to v2.0.3 for enhanced logging capabilities
+- Update Next.js version to v15.5.3 for improved performance and security
+
 ## [3.4.0] - 2025-08-28
 - Add `NextError` class for better error handling in Next.js applications
 - Add `renderAsyncOrError` function for better error handling in Next.js applications

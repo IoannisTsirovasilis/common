@@ -1,6 +1,6 @@
 {
   "name": "@fistware/logger",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "engines": {
@@ -26,11 +26,11 @@
   ],
   "description": "A logging library for Fistware applications.",
   "dependencies": {
-    "pino": "9.9.0"
+    "pino": "9.9.5"
   },
   "devDependencies": {
-    "@fistware/lint-ts": "1.1.1",
-    "@types/node": "24.3.0",
+    "@fistware/lint-ts": "1.1.2",
+    "@types/node": "24.5.0",
     "ts-node": "10.9.2",
     "typescript": "5.9.2"
   }

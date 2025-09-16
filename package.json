@@ -23,7 +23,7 @@
   "license": "UNLICENSED",
   "description": "Common packages for Fistware projects",
   "devDependencies": {
-    "npm-check-updates": "18.0.3",
+    "npm-check-updates": "18.1.1",
     "@fistware/developer-tools": "workspace:*"
   }
 }
