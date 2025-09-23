@@ -37,9 +37,9 @@ export function handleApiRequest<
 
       const serviceRequest = buildServiceRequest<P, R>(req, fields);
 
-      const data = await action(serviceRequest);
+      const result = await action(serviceRequest);
 
-      const response = buildResponse(data, transformResponse, req);
+      const response = buildResponse(result, transformResponse, req);
 
       logResponse(response, req);
 

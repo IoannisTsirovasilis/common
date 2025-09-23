@@ -30,17 +30,18 @@ export function buildServiceRequest<
 }
 
 export function buildResponse<M extends ResponseData>(
-  data: M | M[],
+  result: Partial<HttpResponse<M>>,
   transformResponse: (data: any) => M | M[],
   req: NextRequest,
 ) {
   const response: HttpResponse<M | M[]> = {
-    data: transformResponse(data),
+    data: transformResponse(result.data),
     message: "",
     status: ResponseCode.Ok,
     requestId: extractRequestId(req),
     correlationId: extractCorrelationId(req),
     timestamp: getUnixTimestamp(),
+    reasonCode: result.reasonCode,
   };
 
   return response;

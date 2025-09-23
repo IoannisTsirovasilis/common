@@ -1,4 +1,9 @@
-import { HttpPayload, HttpRequest, ResponseData } from "@fistware/http-core";
+import {
+  HttpPayload,
+  HttpRequest,
+  HttpResponse,
+  ResponseData,
+} from "@fistware/http-core";
 import Joi from "joi";
 
 /**
@@ -18,8 +23,8 @@ export interface HandleApiRequestOptions<
   R extends HttpRequest<P>,
   M extends ResponseData,
 > {
-  action: (fields: R) => Promise<any>;
+  action: (fields: R) => Promise<Partial<HttpResponse<M>>>;
   schema?: Joi.Schema;
-  transformResponse?: (data: any) => M | M[];
+  transformResponse?: (data: HttpResponse<M>) => M | M[];
   handleAuth?: (headers: Record<string, string>) => Promise<any>;
 }

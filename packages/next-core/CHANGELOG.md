@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.0] - 2025-09-23
+
+### Breaking Changes
+- Change `HandleApiRequestOptions` action return type to `(fields: R) => Promise<Partial<HttpResponse<M>>>`
+
+### Added
+- Add `reasonCode` to response
+
 ## [3.4.1] - 2025-09-16
 
 ### Changed

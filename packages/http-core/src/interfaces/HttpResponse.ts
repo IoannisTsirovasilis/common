@@ -9,4 +9,5 @@ export interface HttpResponse<M extends ResponseData> {
   requestId: string;
   correlationId: string;
   timestamp: number;
+  reasonCode?: string;
 }

@@ -18,6 +18,7 @@ export async function buildResponse<M extends ResponseData>(
     requestId: body.requestId,
     correlationId: body.correlationId,
     timestamp: getUnixTimestamp(),
+    reasonCode: body.reasonCode,
   };
 
   return result;
