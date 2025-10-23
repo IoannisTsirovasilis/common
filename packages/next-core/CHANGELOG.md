@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.0.0] - 2025-10-23
+
+### Breaking Changes
+- Update Next.js version to v16.0.0 for improved performance and security [Major Version Change](https://nextjs.org/blog/next-16)
+
+### Changed
+- Update @fistware/logger to v2.0.4 for enhanced logging capabilities
+
 ## [5.0.0] - 2025-10-21
 
 ### Breaking Changes

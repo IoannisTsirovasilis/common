@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.4.2] - 2025-10-23
+
+### Changed
+- Update @fistware/logger to v2.0.4 for enhanced logging capabilities
+
 ## [2.4.1] - 2025-10-21
 
 ### Changed
