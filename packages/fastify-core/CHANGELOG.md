@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.4.3] - 2025-12-01
+
+### Changed
+- Update fastify version to 5.6.2 for improved performance and security
+- Update joi version to 18.0.2 for improved performance and security
+
 ## [2.4.2] - 2025-10-23
 
 ### Changed
