@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.1.3] - 2025-12-03
+
+### Changed
+- Update React version to v19.2.1 for improved performance and security
+
 ## [6.1.2] - 2025-12-03
 
 ### Changed
