@@ -1,5 +1,5 @@
 {
-  "name": "@fistware/utils",
+  "name": "@fistware/react-components",
   "version": "1.1.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -22,12 +22,16 @@
   "files": [
     "dist"
   ],
-  "description": "Utils for Fistware projects",
+  "description": "React components for Fistware projects",
   "dependencies": {
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
   },
   "devDependencies": {
-    "@fistware/lint-ts": "1.2.0",
+    "@fistware/lint-react": "1.1.0",
     "@types/node": "24.10.3",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
     "typescript": "5.9.3"
   }
 }

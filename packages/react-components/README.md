@@ -1,21 +1,11 @@
-# @fistware/utils
+# @fistware/react-components
 
 A collection of utility functions for Fistware projects.
 
 ## Installation
 
 ```bash
-npm install @fistware/utils
-```
-
-## Usage
-
-```typescript
-import { getUnixTimestamp } from '@fistware/utils';
-
-// Get current Unix timestamp (seconds since epoch)
-const timestamp = getUnixTimestamp();
-console.log(timestamp); // e.g., 1703123456
+npm install @fistware/react-components
 ```
 
 ## Development
