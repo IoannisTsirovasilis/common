@@ -11,7 +11,8 @@
     "clean": "tsc --build --clean",
     "build": "tsc",
     "prepare": "npm run build",
-    "lint": "eslint ./src"
+    "lint": "eslint ./src",
+    "test": "jest"
   },
   "keywords": [],
   "author": {
@@ -23,11 +24,12 @@
     "dist"
   ],
   "description": "Utils for Fistware projects",
-  "dependencies": {
-  },
   "devDependencies": {
     "@fistware/lint-ts": "1.2.0",
+    "@types/jest": "30.0.0",
     "@types/node": "24.10.3",
+    "jest": "30.2.0",
+    "ts-jest": "29.4.6",
     "typescript": "5.9.3"
   }
 }
