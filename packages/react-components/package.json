@@ -1,6 +1,6 @@
 {
   "name": "@fistware/react-components",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "engines": {
@@ -25,7 +25,9 @@
   "description": "React components for Fistware projects",
   "dependencies": {
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "@fistware/utils": "1.1.0",
+    "@fistware/logger": "2.0.4"
   },
   "devDependencies": {
     "@fistware/lint-react": "1.1.0",
