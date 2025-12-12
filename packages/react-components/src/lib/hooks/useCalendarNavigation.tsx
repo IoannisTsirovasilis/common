@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { getNextMonth } from "@fistware/utils";
-import { RightArrow } from "@/components/Icons/RightArrow";
-import { LeftArrow } from "@/components/Icons/LeftArrow";
+import { RightArrow } from "../../components/Icons/RightArrow";
+import { LeftArrow } from "../../components/Icons/LeftArrow";
 
 export function useCalendarNavigation(
   props: CalendarMonthNavigationButtonProps,
