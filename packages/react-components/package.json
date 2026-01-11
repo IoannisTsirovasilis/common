@@ -1,6 +1,6 @@
 {
   "name": "@fistware/react-components",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
@@ -33,12 +33,12 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "@fistware/utils": "1.1.0",
-    "@fistware/logger": "2.0.4"
+    "@fistware/logger": "2.0.5"
   },
   "devDependencies": {
-    "@fistware/lint-react": "1.1.0",
-    "@types/node": "24.10.3",
-    "@types/react": "19.2.7",
+    "@fistware/lint-react": "1.1.1",
+    "@types/node": "24.10.7",
+    "@types/react": "19.2.8",
     "@types/react-dom": "19.2.3",
     "typescript": "5.9.3"
   }
