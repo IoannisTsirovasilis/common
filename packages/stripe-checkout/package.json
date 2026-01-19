@@ -1,0 +1,46 @@
+{
+  "name": "@fistware/stripe-checkout",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "type": "module",
+  "scripts": {
+    "clean": "tsc --build --clean",
+    "build": "tsc",
+    "prepare": "npm run build",
+    "lint": "eslint ./src"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Ioannis Tsirovasilis",
+    "email": "ioannis.tsirovasilis@fistware.com"
+  },
+  "license": "UNLICENSED",
+  "files": [
+    "dist"
+  ],
+  "description": "A React component library for integrating Stripe Checkout into your React applications.",
+  "dependencies": {
+    "@fistware/http-client": "3.1.2",
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
+  },
+  "devDependencies": {
+    "@fistware/lint-react": "1.1.1",
+    "@tailwindcss/postcss": "4.1.18",
+    "tailwindcss": "4.1.18",
+    "@types/node": "24.10.7",
+    "@types/react": "19.2.8",
+    "@types/react-dom": "19.2.3",
+    "typescript": "5.9.3"
+  }
+}
