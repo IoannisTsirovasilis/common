@@ -13,6 +13,7 @@
     "lint": "npm run lint --workspaces",
     "check-updates": "npx ncu --deep", 
     "update-dependencies": "npx ncu -u --deep && npm install",
+    "update-dependencies:minor": "npx ncu -u --target minor --deep && npm install",
     "diff:packages": "node node_modules/@fistware/developer-tools/dist/diff-packages.js"
   },
   "keywords": [],
@@ -23,7 +24,7 @@
   "license": "UNLICENSED",
   "description": "Common packages for Fistware projects",
   "devDependencies": {
-    "npm-check-updates": "19.3.1",
+    "npm-check-updates": "19.3.2",
     "@fistware/developer-tools": "workspace:*"
   }
 }
