@@ -1,11 +1,11 @@
 {
   "name": "@fistware/http-client",
-  "version": "3.1.3",
+  "version": "4.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
   "engines": {
-    "node": ">=22.0.0"
+    "node": ">=24.0.0"
   },
   "scripts": {
     "clean": "tsc --build --clean",
@@ -27,13 +27,13 @@
   ],
   "devDependencies": {
     "@fistware/lint-ts": "1.2.2",
-    "@types/node": "24.10.9",
+    "@types/node": "24.10.13",
     "typescript": "5.9.3",
     "ts-node": "10.9.2"
   },
   "dependencies": {
-    "@fistware/http-core": "3.1.0",
-    "@fistware/logger": "2.0.6",
-    "@fistware/utils": "1.1.0"
+    "@fistware/http-core": "4.0.0",
+    "@fistware/logger": "3.0.0",
+    "@fistware/utils": "2.0.0"
   }
 }

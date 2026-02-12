@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [7.0.0] - 2026-02-12
+
+### Changed
+- Update Node.js requirement to >= 24.0.0
+- Update @fistware/http-core to v4.0.0
+- Update @fistware/logger to v3.0.0
+- Update @fistware/utils to v2.0.0
+
 ## [6.1.6] - 2026-01-31
 
 ### Changed

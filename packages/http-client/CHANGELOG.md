@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.0] - 2026-02-12
+
+### Changed
+- Update Node.js requirement to >= 24.0.0
+
 ## [3.1.3] - 2026-01-31
 
 ### Changed
