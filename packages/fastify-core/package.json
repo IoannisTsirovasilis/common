@@ -1,6 +1,6 @@
 {
   "name": "@fistware/fastify-core",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "engines": {
@@ -23,15 +23,15 @@
     "dist"
   ],
   "devDependencies": {
-    "@fistware/lint-ts": "1.2.2",
-    "@types/node": "24.10.13",
+    "@fistware/lint-ts": "2.0.0",
+    "@types/node": "24.12.0",
     "typescript": "5.9.3"
   },
   "dependencies": {
-    "fastify": "5.7.4",
+    "fastify": "5.8.4",
     "@fistware/http-core": "4.0.0",
     "@fistware/logger": "3.0.0",
     "@fistware/utils": "2.0.0",
-    "joi": "18.0.2"
+    "joi": "18.1.1"
   }
 }

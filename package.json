@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "engines": {
-    "node": ">=22.0.0"
+    "node": ">=24.0.0"
   },
   "workspaces": [
     "packages/*"
@@ -24,7 +24,7 @@
   "license": "UNLICENSED",
   "description": "Common packages for Fistware projects",
   "devDependencies": {
-    "npm-check-updates": "19.3.2",
+    "npm-check-updates": "19.6.6",
     "@fistware/developer-tools": "workspace:*"
   }
 }
