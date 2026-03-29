@@ -1,9 +1,9 @@
 import {
   DAY_NAMES_ABBREVIATED,
+  DEFAULT_DATE_FORMAT,
   MONTH_NAMES,
   MONTH_NAMES_ABBREVIATED,
-} from "../constants/dateConstants";
-import { DEFAULT_DATE_FORMAT } from "../constants/dateConstants";
+} from "../constants/dateConstants.js";
 
 function toDate(date: string | Date): Date {
   return typeof date === "string" ? new Date(date) : date;
