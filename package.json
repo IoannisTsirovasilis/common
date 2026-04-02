@@ -15,7 +15,9 @@
     "check-updates": "npx ncu --deep", 
     "update-dependencies": "npx ncu -u --deep && npm install",
     "update-dependencies:minor": "npx ncu -u --target minor --deep && npm install",
-    "diff:packages": "node node_modules/@fistware/developer-tools/dist/diff-packages.js"
+    "diff:packages": "node node_modules/@fistware/developer-tools/dist/diff-packages.js",
+    "demo:log-redaction": "npm run demo -w @fistware/sample-log-redaction",
+    "demo:log-redaction:raw": "npm run demo:raw -w @fistware/sample-log-redaction"
   },
   "keywords": [],
   "author": {

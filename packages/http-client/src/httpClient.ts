@@ -7,7 +7,15 @@ import {
 } from "@fistware/http-core";
 
 import { buildOptions, buildResponse } from "./utils/httpUtils.js";
-import { Logger, LoggerType } from "@fistware/logger";
+import { sanitizeLogHeaderRecord } from "./utils/logSanitization.js";
+import {
+  DEFAULT_REDACT_CENSOR,
+  isLogRedactionEnabled,
+  Logger,
+  LoggerType,
+  redactSensitiveObject,
+  type DestinationStream,
+} from "@fistware/logger";
 
 /**
  * Creates an HTTP client instance with predefined configuration options.
@@ -20,6 +28,7 @@ import { Logger, LoggerType } from "@fistware/logger";
  * @param options.baseUrl - The base URL to prefix all request URLs.
  * @param options.logging - Optional. Enables or disables logging of requests and responses.
  * @param options.loggingLevel - Optional. Specifies the logging level (e.g., 'info', 'debug').
+ * @param options.logDestination - Optional. Pino destination stream (e.g. for tests).
  *
  * @returns An object with `get`, `post`, `put`, and `delete` methods for making HTTP requests.
  *
@@ -34,11 +43,12 @@ import { Logger, LoggerType } from "@fistware/logger";
  * ```
  */
 export function HttpClient(options: HttpClientOptions) {
-  const { baseUrl, logging, loggingLevel } = options;
+  const { baseUrl, logging, loggingLevel, logDestination } = options;
 
   const logger = Logger({
     enabled: logging,
     level: loggingLevel,
+    ...(logDestination ? { destination: logDestination } : {}),
   });
 
   return {
@@ -126,6 +136,8 @@ export interface HttpClientOptions {
   baseUrl: string;
   logging?: boolean;
   loggingLevel?: string;
+  /** Optional log output stream (e.g. for tests). */
+  logDestination?: DestinationStream;
 }
 
 interface ExecuteOptions<P extends HttpPayload> {
@@ -135,19 +147,52 @@ interface ExecuteOptions<P extends HttpPayload> {
   logger: LoggerType;
 }
 
+function buildRequestLogBody<P extends HttpPayload>(
+  request: HttpRequest<P>,
+  headers: Headers,
+  redactLogs: boolean,
+  censor: string,
+): Record<string, unknown> {
+  const safeHeaders = sanitizeLogHeaderRecord(
+    Object.fromEntries(headers),
+    censor,
+    redactLogs,
+  );
+  return {
+    headers: safeHeaders,
+    payload: redactSensitiveObject(request.payload, censor, redactLogs),
+  };
+}
+
+function buildResponseLogBody<M extends ResponseData>(
+  result: HttpResponse<M>,
+  redactLogs: boolean,
+  censor: string,
+): Record<string, unknown> {
+  const safeHeaders = sanitizeLogHeaderRecord(
+    Object.fromEntries(result.headers ?? new Headers()),
+    censor,
+    redactLogs,
+  );
+  return {
+    ...(result as unknown as Record<string, unknown>),
+    headers: safeHeaders,
+    data: redactSensitiveObject(result.data, censor, redactLogs),
+  };
+}
+
 async function execute<P extends HttpPayload, M extends ResponseData>(
   options: ExecuteOptions<P>,
 ): Promise<HttpResponse<M>> {
   const { url, request, method, logger } = options;
   const headers = request.headers ?? new Headers();
   const httpOptions = buildOptions(headers, method);
+  const redactLogs = isLogRedactionEnabled();
+  const censor = DEFAULT_REDACT_CENSOR;
 
   logger.info({
     url,
-    request: {
-      ...request,
-      headers: Object.fromEntries(headers),
-    },
+    request: buildRequestLogBody(request, headers, redactLogs, censor),
     method,
   });
 
@@ -159,13 +204,9 @@ async function execute<P extends HttpPayload, M extends ResponseData>(
   });
 
   const result = await buildResponse<M>(response);
-
   logger.info({
     url,
-    response: {
-      ...result,
-      headers: Object.fromEntries(result.headers ?? new Headers()),
-    },
+    response: buildResponseLogBody(result, redactLogs, censor),
     method,
   });
 

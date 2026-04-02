@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.0] - 2026-04-02
+
+### Breaking
+
+- Structured logs are **redacted by default** (common secrets and PII paths). Cleartext values appear again only when `LOG_REDACT=false` or `LOG_ALLOW_RAW_LOGS=true` (local debugging).
+
+### Added
+
+- Default Pino log **redaction** for common secrets and PII paths (placeholder `[Redacted]`).
+- `isLogRedactionEnabled()`, `LOG_REDACT=false`, and `LOG_ALLOW_RAW_LOGS=true` to opt out locally.
+- `LoggerOptions.redactPaths` and `redactCensor`; optional `destination` for capturing log output in tests.
+- Re-export of `DestinationStream` from `pino` for typing log destinations.
+- `redactSensitiveObject()` for deep key-based redaction of plain objects (used by `@fistware/http-client` for bodies).
+
 ## [3.0.0] - 2026-02-12
 
 ### Changed

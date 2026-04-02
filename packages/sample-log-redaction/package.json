@@ -1,0 +1,26 @@
+{
+  "name": "@fistware/sample-log-redaction",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Runnable demo of @fistware/logger redaction and @fistware/http-client log sanitization.",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "demo": "node --loader ts-node/esm src/demo.ts",
+    "demo:raw": "node --loader ts-node/esm src/demo.ts -- --raw",
+    "lint": "eslint ./src"
+  },
+  "dependencies": {
+    "@fistware/http-client": "file:../http-client",
+    "@fistware/logger": "file:../logger",
+    "pino": "10.3.1"
+  },
+  "devDependencies": {
+    "@fistware/lint-ts": "2.0.0",
+    "@types/node": "24.12.0",
+    "ts-node": "10.9.2",
+    "typescript": "5.9.3"
+  }
+}

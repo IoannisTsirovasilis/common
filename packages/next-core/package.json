@@ -1,6 +1,6 @@
 {
   "name": "@fistware/next-core",
-  "version": "7.0.1",
+  "version": "7.1.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "engines": {
@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "@fistware/http-core": "4.0.0",
-    "@fistware/logger": "3.0.0",
+    "@fistware/logger": "4.0.0",
     "@fistware/utils": "2.0.0",
     "next": "16.2.1",
     "react": "19.2.4",

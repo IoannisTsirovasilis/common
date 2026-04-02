@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.0] - 2026-04-02
+
+### Breaking
+
+- Requires `@fistware/logger` **v4**. Request/response `info` logs redact sensitive headers and nested payload/`data` fields by default (same env toggles as the logger).
+
+### Added
+
+- **Sensitive header sanitization** for request/response log lines when `isLogRedactionEnabled()` is true (aligned with `@fistware/logger`).
+- Optional `logDestination` on `HttpClientOptions` for tests or custom sinks.
+
+### Changed
+
+- Request/response logging respects the same redaction toggle as the logger (`LOG_REDACT` / `LOG_ALLOW_RAW_LOGS`).
+- Request `payload` and response `data` are passed through `redactSensitiveObject()` when redaction is enabled so nested PII (e.g. `email`, `phone`, `address`) is masked, not only headers.
+
 ## [4.0.0] - 2026-02-12
 
 ### Changed
