@@ -159,23 +159,25 @@ export interface HandleApiRequestOptions<
 
 ## Logger Utility
 
-The package also provides a logger utility, powered by @fistware/logger, for consistent logging:
+The package exports a `logger` (Pino via `@fistware/logger`) for consistent structured logging.
+
+Environment variables:
+
+- `LOG_LEVEL` (default: `"info"`)
+- `LOG_ENABLED` (default: logging off unless set to `"true"`)
+- `LOG_REDACT_PATHS` (optional): comma-separated extra [Pino redact paths](https://github.com/pinojs/pino/blob/main/docs/redaction.md), merged with library defaults (e.g. `firstName,*.firstName,*.guestEmail`)
+
+Optional app-specific redact paths (call once at startup, e.g. in Next.js `instrumentation.ts` before handling requests):
 
 ```ts
-import { Logger } from "@fistware/logger";
+import { configureNextCoreLogger } from "@fistware/next-core";
 
-export const logger = Logger({
-  level: String(process.env.LOG_LEVEL || "info"),
-  enabled: process.env.LOG_ENABLED === "true",
+configureNextCoreLogger({
+  redactPaths: ["firstName", "*.firstName", "guestEmail", "*.request.body.guestEmail"],
 });
 ```
 
-You can configure the log level and enable/disable logging using environment variables:
-
-- `LOG_LEVEL` (default: `"info"`)
-- `LOG_ENABLED` (default: `false`)
-
-This helps manage logging behavior across different environments.
+Each call that passes `redactPaths` replaces the previous programmatic list (env `LOG_REDACT_PATHS` is still merged in). The exported `logger` object forwards to the underlying Pino instance so existing `import { logger } from "@fistware/next-core"` usage keeps working.
 
 ## Related Packages
 

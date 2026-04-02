@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [7.1.0] - 2026-04-02
 
+### Added
+
+- `configureNextCoreLogger({ redactPaths })` so apps can add Pino redact paths (e.g. `firstName`, `*.guestEmail`) merged with `@fistware/logger` defaults.
+- `LOG_REDACT_PATHS` environment variable: comma-separated Pino paths, merged the same way.
+- Lazy `logger` proxy so configuration can run before the first log line.
+
 ### Changed
 
 - Update `@fistware/logger` to v4.0.0 (default log redaction; see logger changelog).
